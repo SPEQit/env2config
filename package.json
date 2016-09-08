@@ -1,0 +1,45 @@
+{
+  "name": "env2config",
+  "description": "Generates node-config JSON files from environment",
+  "version": "0.1.0",
+  "homepage": "https://github.com/speqit/env2config",
+  "author": {
+    "name": "Northcloud Inc.",
+    "url": "https://www.speqit.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/speqit/env2config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/speqit/env2config/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "configuration",
+    "config",
+    "conf",
+    "node-config",
+    "env",
+    "environment",
+    "config-env",
+    "cli",
+    "command line"
+  ],
+  "preferGlobal": false,
+  "bin": {
+    "env2config": "./bin/env2config"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=4.0"
+  },
+  "scripts": {
+    "test": "mocha -R test"
+  },
+  "dependencies": {
+    "lodash": "^4.15.0",
+    "minimist": "0.0.10",
+    "verbalize": "^0.1.2"
+  }
+}
