@@ -18,20 +18,16 @@ var generate = require('../lib/generate');
 log.runner = 'env2config';
 
 // Use `-f` or `--file` to specify the source file
-var file   = argv._[0] || argv.f || argv.file || 'env2json.js';
+var file   = argv._[0] || argv.f || argv.file || 'config/env2config.js';
 
 // Use `-o` or `--output` to specify the output file
-var output = argv._[1] || argv.o || argv.output || '-';
+var output = argv._[1] || argv.o || argv.output || 'config/' + (process.env.NODE_ENV || 'development') + '.json';
 
 
-
-if (!file) {
-    log.error('Please provide a source file, either as a first argument or with `-f`');
-}
 try {
     fs.statSync(file);
 } catch (e) {
-    log.error('"' + file + '" does not exist.');
+    log.error('"' + file + '" does not exist. Please provide a file name using the `-f` argument.');
 }
 
 
