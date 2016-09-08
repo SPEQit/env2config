@@ -1,7 +1,7 @@
 {
   "name": "env2config",
   "description": "Generates node-config JSON files from environment",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/speqit/env2config",
   "author": {
     "name": "Northcloud Inc.",
