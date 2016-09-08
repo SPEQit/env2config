@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var path = require('path');
+var _ = require('lodash');
+var log = require('verbalize');
+var argv = require('minimist')(process.argv.slice(2));
+
+
+var generate = require('../lib/generate');
+
+/**
+ * Everything in the file should be customized
+ */
+
+
+// Verbalize `runner`
+log.runner = 'env2config';
+
+// Use `-f` or `--file` to specify the source file
+var file   = argv._[0] || argv.f || argv.file || 'env2json.js';
+
+// Use `-o` or `--output` to specify the output file
+var output = argv._[1] || argv.o || argv.output || '-';
+
+
+
+if (!file) {
+    log.error('Please provide a source file, either as a first argument or with `-f`');
+}
+try {
+    fs.statSync(file);
+} catch (e) {
+    log.error('"' + file + '" does not exist.');
+}
+
+
+/**
+ * Application
+ */
+
+
+var definitions = require(path.join(process.cwd(), file)),
+    config = definitions.$config,
+    environment = process.env;
+definitions = _.omit(definitions, '$config');
+
+var jsonOut = JSON.stringify(generate(definitions, config, environment));
+
+var outStream = (output === '-')
+    ? process.stdout
+    : fs.createWriteStream(output);
+
+outStream.write(jsonOut, function (err) {
+    if (err) {
+        log.error('An error occurred while writing to "' + output + '": ' + err.message);
+        process.exit(1);
+    }
+    outStream.end();
+});
