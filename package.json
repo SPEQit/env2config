@@ -41,5 +41,13 @@
     "lodash": "^4.15.0",
     "minimist": "0.0.10",
     "verbalize": "^0.1.2"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^1.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
